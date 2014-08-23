@@ -11,8 +11,10 @@ Ubuntu 14.04
 Install `chef-solo`:
 
 ```
+echo "127.0.1.1  `hostname`" | sudo tee -a /etc/hosts
 sudo apt-get update
 sudo apt-get install language-pack-en git-core
+
 cd /tmp
 
 wget https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/12.04/x86_64/chefdk_0.2.0-2_amd64.deb
