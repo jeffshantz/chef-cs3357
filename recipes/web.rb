@@ -110,3 +110,10 @@ file '/etc/sudoers.d/100-torquebox' do
   group  'root'
   mode   0440
 end
+
+cookbook_file '/opt/torquebox/.bashrc' do
+  source 'bashrc'
+  owner  'torquebox'
+  group  'torquebox'
+  mode   0644
+end

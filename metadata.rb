@@ -4,7 +4,7 @@ maintainer_email 'jeff@csd.uwo.ca'
 license          'Apache 2.0'
 description      'Installs and configures the cs3357 infrastructure'
 long_description 'Installs and configures the cs3357 infrastructure'
-version          '0.1.1'
+version          '0.1.2'
 
 supports 'ubuntu'
 
