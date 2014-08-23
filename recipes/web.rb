@@ -6,6 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 
+
 ################################################################################
 # Database configuration                                                       #
 ################################################################################
@@ -69,9 +70,43 @@ nginx_site 'cs3357' do
   timing :immediately
 end
 
+################################################################################
+# Torquebox                                                                    #
+################################################################################
+
 include_recipe 'torquebox::server'
 
 service 'torquebox' do
   action  [:enable, :start]
 end
 
+################################################################################
+# Torquebox user                                                               #
+################################################################################
+
+user 'torquebox' do
+  shell  '/bin/bash'
+  action :modify
+end
+
+directory '/opt/torquebox/.ssh' do
+  mode      0700
+  recursive true
+  owner     'torquebox'
+  group     'torquebox'
+end
+
+remote_file 'Copy authorized_keys' do 
+  path   '/opt/torquebox/.ssh/authorized_keys'
+  source 'file:///home/ubuntu/.ssh/authorized_keys'
+  owner  'torquebox'
+  group  'torquebox'
+  mode   0600
+end
+
+file '/etc/sudoers.d/100-torquebox' do
+  content 'torquebox ALL=(ALL) NOPASSWD:ALL'
+  owner  'root'
+  group  'root'
+  mode   0440
+end
