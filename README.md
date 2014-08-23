@@ -11,18 +11,22 @@ Ubuntu 14.04
 Install `chef-solo`:
 
 ```
+sudo apt-get update
+sudo apt-get install language-pack-en git-core
 cd /tmp
+
 wget https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/12.04/x86_64/chefdk_0.2.0-2_amd64.deb
 sudo dpkg -i chefdk_0.2.0-2_amd64.deb
-sudo apt-get install git-core
+
 git clone https://github.com/jeffshantz/chef-cs3357.git
 cd chef-cs3357
 berks package
 
 sudo -i
 mkdir /root/chef
+cd !$
 # Use the filename from the output of the 'berks package' command
-tar zxvf /tmp/chef-cs3357/cookbooks-1408690620.tar.gz -C /root/chef
+tar zxvf /tmp/chef-cs3357/cookbooks-1408690620.tar.gz
 ```
 
 Create a file `/root/chef/solo.rb`:
@@ -34,6 +38,12 @@ log_level :info
 cookbook_path [
   "/root/chef/cookbooks"
 ]
+```
+
+Finally, create a `json` file according to one of the recipes below, and then run `chef-solo`:
+
+```
+chef-solo -c solo.rb -j web.json
 ```
 
 ### cs3357::web
