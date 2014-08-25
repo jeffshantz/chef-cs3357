@@ -68,7 +68,8 @@ Create a file `/root/chef/web.json`:
     "ssl": {
       "enabled": true,
       "certificate": "-----BEGIN CERTIFICATE-----\nMail Certificate Here...",
-      "key": "-----BEGIN PRIVATE KEY\nMail Private Key Here...",
+      "key": "-----BEGIN PRIVATE KEY\nMail Private Key Here..."
+    }
   },
   "run_list": [ "recipe[cs3357::web]" ]
 }
