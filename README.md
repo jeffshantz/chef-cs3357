@@ -63,10 +63,21 @@ Create a file `/root/chef/web.json`:
       "name": "db_name",
       "user": "db_user",
       "password": "db_password"
-    }
+    },
+    "domain": "www.cs3357.ca",
+    "ssl": {
+      "enabled": true,
+      "certificate": "-----BEGIN CERTIFICATE-----\nMail Certificate Here...",
+      "key": "-----BEGIN PRIVATE KEY\nMail Private Key Here...",
   },
   "run_list": [ "recipe[cs3357::web]" ]
 }
+```
+
+When pasting the certificate and key, be sure to create single-line blobs with literal `\n` characters.  You can use the following for this:
+
+```
+cat <filename> | sed s/$/\\\\n/ | tr -d '\n'
 ```
 
 ## License and Authors

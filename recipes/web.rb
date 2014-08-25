@@ -45,6 +45,26 @@ end
 # Nginx reverse proxy configuration                                            #
 ################################################################################
 
+if node[:cs3357][:ssl][:enabled]
+
+  file "/etc/ssl/certs/#{node[:cs3357][:domain]}.crt.pem" do
+    content node[:cs3357][:ssl][:certificate]
+    owner   'root'
+    group   'root'
+    mode    0644
+    action  :create
+  end
+  
+  file "/etc/ssl/private/#{node[:cs3357][:domain]}.key.pem" do
+    content node[:cs3357][:ssl][:key]
+    owner   'root'
+    group   'ssl-cert'
+    mode    0640
+    action  :create
+  end
+
+end
+
 include_recipe 'nginx'
 
 file File.join(node[:nginx][:dir], 'conf.d', 'default.conf') do
